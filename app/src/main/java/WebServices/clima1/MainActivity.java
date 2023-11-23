@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null; // URL was malformed
+        return null;
     }
 
     private class GetWeatherTask
@@ -130,9 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(JSONObject weather) {
-            convertJSONtoArrayList(weather); // repopulate weatherList
-            weatherArrayAdapter.notifyDataSetChanged(); // rebind to ListView
-            weatherListView.smoothScrollToPosition(0); // scroll to top
+            convertJSONtoArrayList(weather);
+            weatherArrayAdapter.notifyDataSetChanged();
+            weatherListView.smoothScrollToPosition(0);
         }
     }
 
@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
         weatherList.clear();
 
         if (forecast == null) {
-            // El objeto forecast es nulo
             Log.e("Error", "El objeto JSON es nulo");
             return;
         }
@@ -156,11 +155,11 @@ public class MainActivity extends AppCompatActivity {
 
                 weatherList.add(new Weather(
                         day.getLong("dt"),  // timestamp
-                        temperatures.getDouble("temp_min"),  // minimal temperature
-                        temperatures.getDouble("temp_max"),  // maximal temperature
-                        temperatures.getDouble("humidity"),  // humidity
-                        weather.getString("description"), // weather conditions
-                        weather.getString("icon")));    // icon name
+                        temperatures.getDouble("temp_min"),
+                        temperatures.getDouble("temp_max"),
+                        temperatures.getDouble("humidity"),
+                        weather.getString("description"),
+                        weather.getString("icon")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
